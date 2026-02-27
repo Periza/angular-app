@@ -106,8 +106,6 @@ main {
   margin-inline: 0.5rem;
 }
 
-
-
 .pill-group .pill:nth-child(6n + 1) {
   --pill-accent: var(--bright-blue);
 }
