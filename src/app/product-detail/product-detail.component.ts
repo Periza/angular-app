@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -6,12 +6,17 @@ import { Product } from '../product';
   imports: [],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent {
-  product = input.required<Product>();
-  added = output();
+  product = input<Product>();
+  added = output<Product>();
 
   addToCart() {
-    this.added.emit();
+    this.added.emit(this.product()!);
+  }
+
+  get productTitle() {
+    return this.product()!.title;
   }
 }
