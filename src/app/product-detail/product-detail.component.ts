@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
