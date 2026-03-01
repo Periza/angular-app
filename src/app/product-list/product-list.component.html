@@ -22,7 +22,11 @@
     <p>No products found!</p>
   }
   @if (selectedProduct) {
-    <app-product-detail #productDetail [product]="selectedProduct" (added)="onAdded($event)"></app-product-detail>
+    <app-product-detail
+      #productDetail
+      [product]="selectedProduct"
+      (added)="onAdded($event)"
+    ></app-product-detail>
     <span>{{ productDetail.product()!.title }}</span>
   }
 </ul>
