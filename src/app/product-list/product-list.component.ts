@@ -1,4 +1,10 @@
-import { Component, AfterViewInit, viewChild, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  viewChild,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { Product } from '../product';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { SortPipe } from '../sort.pipe';

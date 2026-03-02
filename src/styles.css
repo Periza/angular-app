@@ -22,9 +22,9 @@
 }
 
 input.valid {
-    border: solid green;
+  border: solid green;
 }
 
 input.invalid {
-    border: solid red;
+  border: solid red;
 }
