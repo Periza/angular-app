@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { KeyLoggerComponent } from './key-logger/key-logger.component';
 
 @Component({
@@ -28,7 +28,8 @@ export class AppComponent {
 
 
   constructor() {
-    this.title$.subscribe(this.setTitle);
+    const complete$ = from(this.onComplete());
+    complete$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {

@@ -1,3 +1,4 @@
+@let products = (products$ | async)!;
 @if (products.length > 0) {
   <h1>Products ({{ products.length }})</h1>
 }
@@ -5,7 +6,7 @@
 <ul class="pill-group">
   @for (product of products | sort: "price"; track product.id; let i = $index) {
     <li class="pill" (click)="selectedProduct = product">
-      
+      {{ product.icon }} {{ product.title }}
     </li>
   } @empty {
     <p>No products found!</p>
