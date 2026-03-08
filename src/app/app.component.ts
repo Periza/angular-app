@@ -1,14 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, computed, Signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
 import { from, Observable } from 'rxjs';
-import { KeyLoggerComponent } from './key-logger/key-logger.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ProductListComponent, CopyrightDirective, KeyLoggerComponent],
+  imports: [RouterOutlet, ProductListComponent, CopyrightDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [
@@ -16,25 +15,28 @@ import { KeyLoggerComponent } from './key-logger/key-logger.component';
   ]
 })
 export class AppComponent {
-  title = "World"
+  title: Signal<string> = signal('');
   title$ = new Observable(observer => {
     setInterval(() => {
       observer.next(undefined);
     }, 2000);
   });
 
+  currentDate = signal(new Date());
+
 
   settings = inject(APP_SETTINGS);
 
 
   constructor() {
-    const complete$ = from(this.onComplete());
-    complete$.subscribe(this.setTitle);
+    this.title$.subscribe(this.setTitle);
+    this.title = computed(() => {
+    return `${this.settings.title} (${this.currentDate()})`;
+  });
   }
 
   private setTitle = () => {
-    const timestamp = new Date();
-    this.title = `${this.settings.title} (${timestamp})`
+    this.currentDate.set(new Date());
   }
 
   private changeTitle(callback: Function) {

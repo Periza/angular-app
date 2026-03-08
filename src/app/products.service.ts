@@ -11,7 +11,6 @@ export class ProductsService {
         id: 1,
         title: 'Keyboard',
         price: 100,
-        icon: '⌨️',
         categories: {
           1: 'Computing',
           2: 'Peripherals',
@@ -21,14 +20,12 @@ export class ProductsService {
         id: 2,
         title: 'Microphone',
         price: 35,
-        icon: '🎙️',
         categories: { 3: 'Mulitmedia' },
       },
       {
         id: 3,
         title: 'Web camera',
         price: 79,
-        icon: '📷',
         categories: {
           1: 'Computing',
           3: 'Multimedia',
@@ -38,7 +35,6 @@ export class ProductsService {
         id: 4,
         title: 'Tablet',
         price: 500,
-        icon: '🏷️',
         categories: { 4: 'Entertainment' },
       }
   ]

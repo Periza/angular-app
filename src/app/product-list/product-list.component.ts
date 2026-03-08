@@ -11,41 +11,27 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 import { SortPipe } from '../sort.pipe';
 import { ProductsService } from '../products.service';
 import { Observable, Subscription } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductDetailComponent, SortPipe, AsyncPipe],
+  imports: [ProductDetailComponent, SortPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
   providers: [ProductsService]
 })
-export class ProductListComponent implements AfterViewInit, OnInit {
+export class ProductListComponent {
   
   products$: Observable<Product[]> | undefined;
   selectedProduct: Product | undefined;
-  productDetail = viewChild(ProductDetailComponent);
-  private productService = inject(ProductsService);
-  private productsSub: Subscription | undefined;
-  private destroyRef = inject(DestroyRef);
+  products = toSignal(inject(ProductsService).getProducts(), {
+    initialValue: []
+  });
 
-  ngOnInit(): void {
-    this.getProducts();
-  }
 
   onAdded(product: Product) {
     alert(`${this.selectedProduct?.title} added to cart!`);
-  }
-
-  ngAfterViewInit(): void {
-    if (this.productDetail()) {
-      console.log(this.productDetail()!.product);
-    }
-  }
-
-  private getProducts() {
-    this.products$ = this.productService.getProducts();
   }
 }
