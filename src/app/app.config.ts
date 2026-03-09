@@ -10,6 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    { provide: APP_SETTINGS, useValue: appSettings }
+    { provide: APP_SETTINGS, useValue: appSettings },
   ],
 };

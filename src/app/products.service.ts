@@ -10,29 +10,33 @@ export class ProductsService {
 
   private productsUrl = inject(APP_SETTINGS).apiUrl + '/products';
 
-  private products: Product[] = []
+  private products: Product[] = [];
 
   getProducts(): Observable<Product[]> {
     const options = new HttpParams().set('limit', 10);
-    return this.http.get<Product[]>(this.productsUrl, {
-      params: options
-    }).pipe(map(products => {
-      this.products = products;
-      return products;
-    }));
+    return this.http
+      .get<Product[]>(this.productsUrl, {
+        params: options,
+      })
+      .pipe(
+        map((products) => {
+          this.products = products;
+          return products;
+        }),
+      );
   }
 
   getProduct(id: number): Observable<Product> {
-    const product = this.products.find(p => p.id === id);
+    const product = this.products.find((p) => p.id === id);
     return of(product!);
   }
 
-  addProduct(newProduct: Partial<Product>) : Observable<Product> {
+  addProduct(newProduct: Partial<Product>): Observable<Product> {
     return this.http.post<Product>(this.productsUrl, newProduct).pipe(
-      map(product => {
+      map((product) => {
         this.products.push(product);
         return product;
-      })
+      }),
     );
   }
 }

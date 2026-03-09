@@ -5,7 +5,7 @@ import {
   input,
   output,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { Product } from '../product';
 import { Observable } from 'rxjs';
@@ -23,7 +23,7 @@ export class ProductDetailComponent implements OnChanges {
   added = output<Product>();
   id = input<number>();
 
-  constructor(private productsService: ProductsService){}
+  constructor(private productsService: ProductsService) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.product$ = this.productsService.getProduct(this.id()!);
   }

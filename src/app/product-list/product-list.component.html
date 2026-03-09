@@ -3,12 +3,22 @@
 }
 
 <ul class="pill-group">
-  @for (product of products() | sort: "price"; track product.id; let i = $index) {
+  @for (
+    product of products() | sort: "price";
+    track product.id;
+    let i = $index
+  ) {
     <li class="pill" (click)="selectedProduct = product">
-       @switch (product.category) {
-        @case ('electronics') {  '⌨️' }
-        @case ('jewelery') { '💎' }
-        @default { '🏷️' }
+      @switch (product.category) {
+        @case ("electronics") {
+          '⌨️'
+        }
+        @case ("jewelery") {
+          '💎'
+        }
+        @default {
+          '🏷️'
+        }
       }
       {{ product.title }}
     </li>

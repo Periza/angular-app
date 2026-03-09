@@ -1,4 +1,4 @@
-@let product = (product$ | async);
+@let product = product$ | async;
 @if (product) {
   <div>
     <p>
@@ -7,7 +7,7 @@
     </p>
     <p>{{ product.price | currency: "EUR" }}</p>
     <div class="pill-group">
-      <p class = "pill">{{ product.category }}</p>
+      <p class="pill">{{ product.category }}</p>
     </div>
     <button (click)="addToCart(product)">Add to cart</button>
   </div>

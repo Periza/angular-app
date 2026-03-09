@@ -9,15 +9,12 @@ import { from, Observable } from 'rxjs';
   selector: 'app-root',
   imports: [RouterOutlet, ProductListComponent, CopyrightDirective],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   currentDate = signal(new Date());
 
-
   settings = inject(APP_SETTINGS);
-
 
   private changeTitle(callback: Function) {
     setTimeout(() => {
@@ -26,8 +23,10 @@ export class AppComponent {
   }
 
   private onComplete() {
-    return new Promise<void>(resolve => {
-      setInterval(() => { resolve()}, 2000);
+    return new Promise<void>((resolve) => {
+      setInterval(() => {
+        resolve();
+      }, 2000);
     });
   }
 }
