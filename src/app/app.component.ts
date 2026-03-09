@@ -9,35 +9,15 @@ import { from, Observable } from 'rxjs';
   selector: 'app-root',
   imports: [RouterOutlet, ProductListComponent, CopyrightDirective],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  providers: [
-    {provide: APP_SETTINGS, useValue: appSettings}
-  ]
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title: Signal<string> = signal('');
-  title$ = new Observable(observer => {
-    setInterval(() => {
-      observer.next(undefined);
-    }, 2000);
-  });
 
   currentDate = signal(new Date());
 
 
   settings = inject(APP_SETTINGS);
 
-
-  constructor() {
-    this.title$.subscribe(this.setTitle);
-    this.title = computed(() => {
-    return `${this.settings.title} (${this.currentDate()})`;
-  });
-  }
-
-  private setTitle = () => {
-    this.currentDate.set(new Date());
-  }
 
   private changeTitle(callback: Function) {
     setTimeout(() => {

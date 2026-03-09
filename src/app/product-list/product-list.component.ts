@@ -12,7 +12,6 @@ import { SortPipe } from '../sort.pipe';
 import { ProductsService } from '../products.service';
 import { Observable, Subscription } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
 
 
 @Component({
