@@ -10,6 +10,7 @@ import {
 import { Product } from '../product';
 import { Observable } from 'rxjs';
 import { ProductsService } from '../products.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,7 +25,7 @@ export class ProductDetailComponent implements OnChanges {
   id = input<number>();
   deleted = output();
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService, public authService: AuthService) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.product$ = this.productsService.getProduct(this.id()!);
   }
