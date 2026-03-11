@@ -30,8 +30,11 @@
       #productDetail
       [id]="selectedProduct.id"
       (added)="onAdded($event)"
+      (deleted)="selectedProduct = undefined"
     ></app-product-detail>
     <span>{{ selectedProduct.title }}</span>
   }
 </ul>
 <h1>Favorites</h1>
+
+<app-product-create />

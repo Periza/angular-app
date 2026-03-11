@@ -12,10 +12,11 @@ import { SortPipe } from '../sort.pipe';
 import { ProductsService } from '../products.service';
 import { Observable, Subscription } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ProductCreateComponent } from '../product-create/product-create.component';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductDetailComponent, SortPipe],
+  imports: [ProductDetailComponent, SortPipe, ProductCreateComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
   providers: [ProductsService],
