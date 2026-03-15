@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductDetailComponent } from './product-detail.component';
+import { CommonModule } from '@angular/common';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
