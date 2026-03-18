@@ -5,10 +5,11 @@ import { Product } from '../product';
 import { Observable, switchMap } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CurrencyPipe, AsyncPipe],
+  imports: [CurrencyPipe, AsyncPipe, FormsModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
 })
@@ -16,23 +17,29 @@ export class ProductDetailComponent implements OnInit {
   product$: Observable<Product> | undefined;
   id = input<string>();
 
-  constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute, private router: Router) {}
+  price: number | undefined;
+
+  constructor(
+    private productService: ProductsService,
+    public authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.product$ = this.route.paramMap.pipe(
-      switchMap(params => {
+      switchMap((params) => {
         return this.productService.getProduct(Number(params.get('id')));
-      })
+      }),
     );
   }
 
-  addToCart(product: Product) {
-  }
+  addToCart(product: Product) {}
 
-  changePrice(product: Product, price: string) {
-    this.productService.updateProduct(product.id, Number(price)).subscribe(() => {
-      this.router.navigate(['/products']);
-    });
+  changePrice(product: Product) {
+    this.productService
+      .updateProduct(product.id, product.price!)
+      .subscribe(() => this.router.navigate(['/products']));
   }
 
   remove(product: Product) {

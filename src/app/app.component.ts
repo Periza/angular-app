@@ -4,10 +4,15 @@ import { CopyrightDirective } from './copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
 import { AuthComponent } from './auth/auth.component';
 
-
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, CopyrightDirective, AuthComponent, RouterLinkActive],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    CopyrightDirective,
+    AuthComponent,
+    RouterLinkActive,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

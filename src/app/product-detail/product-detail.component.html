@@ -6,15 +6,20 @@
       <strong>{{ product.title }}</strong>
     </p>
     <p>{{ product.price | currency: "EUR" }}</p>
-    <input placeholder="New price" #price type="number" />
-    <button class="secondary" (click)="changePrice(product, price.value)">
-      Change
-    </button>
+    <form (ngSubmit)="changePrice(product)">
+      <input
+        placeholder="New price"
+        name="price"
+        type="number"
+        [(ngModel)]="price"
+      />
+      <button class="secondary" type="submit">Change</button>
+    </form>
     <div class="pill-group">
       <p class="pill">{{ product.category }}</p>
     </div>
     <div class="button-group">
-      @if(authService.isLoggedIn()) {
+      @if (authService.isLoggedIn()) {
         <button (click)="addToCart(product)">Add to cart</button>
       }
       <button class="delete" (click)="remove(product)">Delete</button>

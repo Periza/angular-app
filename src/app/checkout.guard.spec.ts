@@ -4,8 +4,8 @@ import { CanDeactivateFn } from '@angular/router';
 import { checkoutGuard } from './checkout.guard';
 
 describe('checkoutGuard', () => {
-  const executeGuard: CanDeactivateFn<unknown> = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => checkoutGuard(...guardParameters));
+  const executeGuard: CanDeactivateFn<unknown> = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => checkoutGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

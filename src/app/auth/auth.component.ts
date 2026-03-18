@@ -5,10 +5,9 @@ import { AuthService } from '../auth.service';
   selector: 'app-auth',
   imports: [],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css'
+  styleUrl: './auth.component.css',
 })
 export class AuthComponent {
-
   constructor(public authService: AuthService) {}
 
   login() {

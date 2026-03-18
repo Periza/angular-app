@@ -1,5 +1,3 @@
-import { UserComponent } from "./user/user.component";
+import { UserComponent } from './user/user.component';
 
-export default [
-    { path: '', component: UserComponent}
-]
+export default [{ path: '', component: UserComponent }];
