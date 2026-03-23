@@ -24,6 +24,7 @@ export const routes: Routes = [
     component: CartComponent,
     canActivate: [authGuard],
     canDeactivate: [checkoutGuard],
+    providers: [ProductsService],
   },
   {
     path: 'user',

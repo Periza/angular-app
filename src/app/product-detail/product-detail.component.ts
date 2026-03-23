@@ -6,6 +6,7 @@ import { Observable, switchMap } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
     public authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -34,11 +36,13 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
-  addToCart(product: Product) {}
+  addToCart(id: number) {
+    this.cartService.addProduct(id).subscribe();
+  }
 
   changePrice(product: Product) {
     this.productService
-      .updateProduct(product.id, product.price!)
+      .updateProduct(product.id, this.price!)
       .subscribe(() => this.router.navigate(['/products']));
   }
 
