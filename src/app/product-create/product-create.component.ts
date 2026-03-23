@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { priceMaxiumValidator } from '../price-maximum.validator';
 
 @Component({
   selector: 'app-product-create',
@@ -30,9 +31,12 @@ export class ProductCreateComponent implements OnInit {
 
   private buildForm() {
     this.productForm = this.builder.nonNullable.group({
-      title: [''],
-      price: this.builder.nonNullable.control<number | undefined>(undefined),
-      category: ['']
+      title: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      price: new FormControl<number | undefined>(undefined, 
+        { nonNullable: true, 
+          validators: [Validators.required, Validators.min(1), priceMaxiumValidator(1000)]
+        }),
+      category: new FormControl('', { nonNullable: true })
     });
   }
 
