@@ -13,14 +13,24 @@
         type="number"
         #priceCtrl="ngModel"
         [(ngModel)]="price"
-        required min="1"
-        appPriceMaximum treshold="500"
+        required
+        min="1"
+        appPriceMaximum
+        treshold="500"
+        (ngModelChange)="price = $event"
       />
-      <button class="secondary" type="submit" [disabled]="priceForm.invalid">Change</button>
-      @if(priceCtrl.dirty && (priceCtrl.invalid || priceCtrl.hasError('min'))) {
+      <button class="secondary" type="submit" [disabled]="priceForm.invalid">
+        Change
+      </button>
+      @if (
+        priceCtrl.dirty && (priceCtrl.invalid || priceCtrl.hasError("min"))
+      ) {
         <span class="help-text">Please enter a valid price</span>
       }
-      @if(priceCtrl.dirty && (priceCtrl.invalid || priceCtrl.hasError('priceMaximum'))) {
+      @if (
+        priceCtrl.dirty &&
+        (priceCtrl.invalid || priceCtrl.hasError("priceMaximum"))
+      ) {
         <span class="help-text">Price must be smaller or equal to 500</span>
       }
     </form>

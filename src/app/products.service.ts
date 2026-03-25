@@ -1,7 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpParams,
+  HttpErrorResponse,
+  HttpStatusCode,
+} from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Product } from './product';
-import { Observable, of, map, tap } from 'rxjs';
+import { Observable, of, map, tap, catchError, throwError, retry } from 'rxjs';
 import { APP_SETTINGS } from './app.settings';
 
 @Injectable()
@@ -24,9 +29,32 @@ export class ProductsService {
             this.products = products;
             return products;
           }),
+          retry(2),
+          catchError(this.handleError),
         );
     }
     return of(this.products);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let message = '';
+    switch (error.status) {
+      case 0:
+        message = 'Client error';
+        break;
+      case HttpStatusCode.InternalServerError:
+        message = 'Server error';
+        break;
+      case HttpStatusCode.BadRequest:
+        message = 'Request error';
+        break;
+      default:
+        message = 'Unknown error';
+    }
+
+    console.error(message, error.error);
+
+    return throwError(() => error);
   }
 
   getProduct(id: number): Observable<Product> {

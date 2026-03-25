@@ -1,4 +1,4 @@
 export interface Cart {
-    id: number,
-    products: { productId : number } []
+  id: number;
+  products: { productId: number }[];
 }

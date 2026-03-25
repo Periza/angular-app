@@ -3,20 +3,32 @@
   <div>
     <label for="title">Title</label>
     <input id="title" formControlName="title" required />
-    @if(productForm?.controls?.title?.touched && productForm?.controls?.title?.invalid) {
+    @if (
+      productForm?.controls?.title?.touched &&
+      productForm?.controls?.title?.invalid
+    ) {
       <span class="help-text">Title is required</span>
     }
   </div>
   <div>
     <label for="price">Price</label>
     <input id="price" formControlName="price" type="number" required />
-    @if(productForm?.controls?.price?.touched && productForm?.controls?.price?.hasError('required')) {
+    @if (
+      productForm?.controls?.price?.touched &&
+      productForm?.controls?.price?.hasError("required")
+    ) {
       <span class="help-text">Price is required</span>
     }
-    @if(productForm?.controls?.price?.touched && productForm?.controls?.price?.hasError('min')) {
+    @if (
+      productForm?.controls?.price?.touched &&
+      productForm?.controls?.price?.hasError("min")
+    ) {
       <span class="help-text">Price should be greater than 0</span>
     }
-    @if(productForm?.controls?.price?.touched && productForm?.controls?.price?.hasError('priceMaximum')) {
+    @if (
+      productForm?.controls?.price?.touched &&
+      productForm?.controls?.price?.hasError("priceMaximum")
+    ) {
       <span class="help-text">Price must be smaller or equal to 10000</span>
     }
   </div>
