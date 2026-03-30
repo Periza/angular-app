@@ -7,10 +7,11 @@ import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../cart.service';
+import { PriceMaximumDirective } from '../price-maximum.directive';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CurrencyPipe, AsyncPipe, FormsModule],
+  imports: [CurrencyPipe, AsyncPipe, FormsModule, PriceMaximumDirective],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
 })
@@ -25,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
     public authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
