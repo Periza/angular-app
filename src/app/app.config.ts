@@ -8,6 +8,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { withInterceptors } from '@angular/common/http';
 import { AppErrorHandler } from './app-error-handler';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { APP_SETTINGS, appSettings } from './app.settings';
 
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([])),
     { provide: APP_SETTINGS, useValue: appSettings },
     { provide: ErrorHandler, useClass: AppErrorHandler },
+    provideAnimationsAsync(),
   ],
 };

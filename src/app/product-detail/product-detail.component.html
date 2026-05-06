@@ -19,7 +19,12 @@
         treshold="500"
         (ngModelChange)="price = $event"
       />
-      <button class="secondary" type="submit" [disabled]="priceForm.invalid">
+      <button
+        mat-stroked-button
+        class="secondary"
+        type="submit"
+        [disabled]="priceForm.invalid"
+      >
         Change
       </button>
       @if (
@@ -37,11 +42,14 @@
     <div class="pill-group">
       <p class="pill">{{ product.category }}</p>
     </div>
-    <div class="button-group">
-      @if (authService.isLoggedIn()) {
-        <button (click)="addToCart(product.id)">Add to cart</button>
-      }
-      <button class="delete" (click)="remove(product)">Delete</button>
-    </div>
+
+    @if (authService.isLoggedIn()) {
+      <button mat-raised-button (click)="addToCart(product.id)">
+        Add to cart
+      </button>
+    }
+    <button mat-raised-button class="delete" (click)="remove(product)">
+      Delete
+    </button>
   </div>
 }

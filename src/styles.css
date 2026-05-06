@@ -58,10 +58,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: color-mix(in srgb, var(--button-accent) 50%, transparent);
-}
-
 a {
   text-decoration: none;
 }
@@ -79,10 +75,12 @@ label {
   color: var(--hot-red);
   font-size: 0.875rem;
 }
-button:disabled {
-  background-color: lightgrey;
-  cursor: not-allowed;
-}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

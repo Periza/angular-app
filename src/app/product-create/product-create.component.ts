@@ -10,10 +10,11 @@ import {
 } from '@angular/forms';
 import { priceMaxiumValidator } from '../price-maximum.validator';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-create',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatButton],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.css',
 })

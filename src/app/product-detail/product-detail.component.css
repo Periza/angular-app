@@ -35,13 +35,12 @@ div {
 button.secondary {
   display: inline;
   margin-left: 5px;
-  --button-accent: var(--vivid-pink);
 }
 
 button.delete {
   display: inline;
   margin-left: 5px;
-  --button-accent: var(--hot-red);
+  color: brown;
 }
 .button-group {
   display: flex;
