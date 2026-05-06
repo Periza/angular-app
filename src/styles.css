@@ -21,22 +21,6 @@
   position: relative;
 }
 
-input.ng-valid,
-input.ng-dirty.ng-valid {
-  border: solid green;
-}
-
-input.ng-invalid,
-input.ng-dirty.ng-invalid {
-  border: solid red;
-}
-
-input {
-  border-radius: 4px;
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #bdbdbd;
-}
 
 button {
   display: flex;
