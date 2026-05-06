@@ -8,10 +8,13 @@ import {
 import { Product } from '../product';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatError, MatLabel } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-cart',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatButton, MatInput, MatFormField, MatError, MatLabel],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

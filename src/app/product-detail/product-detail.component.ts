@@ -8,7 +8,10 @@ import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../cart.service';
 import { PriceMaximumDirective } from '../price-maximum.directive';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatError, MatSuffix } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,6 +21,12 @@ import { MatButton } from '@angular/material/button';
     FormsModule,
     PriceMaximumDirective,
     MatButton,
+    MatInput,
+    MatFormField,
+    MatError,
+    MatIcon,
+    MatSuffix,
+    MatIconButton
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',

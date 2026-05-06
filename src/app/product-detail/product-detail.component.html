@@ -7,37 +7,41 @@
     </p>
     <p>{{ product.price | currency: "EUR" }}</p>
     <form (ngSubmit)="changePrice(product)" #priceForm="ngForm">
-      <input
-        placeholder="New price"
-        name="price"
-        type="number"
-        #priceCtrl="ngModel"
-        [(ngModel)]="price"
-        required
-        min="1"
-        appPriceMaximum
-        treshold="500"
-        (ngModelChange)="price = $event"
-      />
-      <button
-        mat-stroked-button
-        class="secondary"
-        type="submit"
-        [disabled]="priceForm.invalid"
-      >
-        Change
-      </button>
-      @if (
-        priceCtrl.dirty && (priceCtrl.invalid || priceCtrl.hasError("min"))
-      ) {
-        <span class="help-text">Please enter a valid price</span>
-      }
-      @if (
-        priceCtrl.dirty &&
-        (priceCtrl.invalid || priceCtrl.hasError("priceMaximum"))
-      ) {
-        <span class="help-text">Price must be smaller or equal to 500</span>
-      }
+      <mat-form-field>
+        <input
+          placeholder="New price"
+          name="price"
+          type="number"
+          #priceCtrl="ngModel"
+          [(ngModel)]="price"
+          required
+          min="1"
+          appPriceMaximum
+          threshold="500"
+          matInput
+          (ngModelChange)="price = $event"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          class="secondary"
+          type="submit"
+          [disabled]="priceForm.invalid"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        @if (
+          priceCtrl.dirty && (priceCtrl.invalid || priceCtrl.hasError("min"))
+        ) {
+          <mat-error>Please enter a valid price</mat-error>
+        }
+        @if (
+          priceCtrl.dirty &&
+          (priceCtrl.invalid || priceCtrl.hasError("priceMaximum"))
+        ) {
+          <mat-error>Price must be smaller or equal to 500</mat-error>
+        }
+      </mat-form-field>
     </form>
     <div class="pill-group">
       <p class="pill">{{ product.category }}</p>

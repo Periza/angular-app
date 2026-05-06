@@ -11,59 +11,48 @@ import {
 import { priceMaxiumValidator } from '../price-maximum.validator';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatError, MatLabel } from '@angular/material/input';
 
 @Component({
   selector: 'app-product-create',
-  imports: [ReactiveFormsModule, MatButton],
+  imports: [ReactiveFormsModule, MatButton, MatInput, MatFormField, MatError, MatLabel],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.css',
 })
 export class ProductCreateComponent implements OnInit {
-  constructor(
-    private productsService: ProductsService,
-    private router: Router,
-    private builder: FormBuilder,
-  ) {}
-
+  private productsService = inject(ProductsService);
+  private router = inject(Router);
+  private builder = inject(FormBuilder);
   private destoryRef = inject(DestroyRef);
 
-  productForm:
-    | FormGroup<{
-        title: FormControl<string>;
-        price: FormControl<number | undefined>;
-        category: FormControl<string>;
-      }>
-    | undefined;
+  productForm = this.builder.nonNullable.group({
+    title: new FormControl('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    price: new FormControl<number | undefined>(undefined, {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.min(1),
+        priceMaxiumValidator(1000),
+      ],
+    }),
+    category: new FormControl('', { nonNullable: true }),
+  });
 
   createProduct() {
-    this.productsService.addProduct(this.productForm!.value).subscribe(() => {
+    this.productsService.addProduct(this.productForm.value).subscribe(() => {
       this.router.navigate(['/products']);
     });
   }
 
-  private buildForm() {
-    this.productForm = this.builder.nonNullable.group({
-      title: new FormControl('', {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-      price: new FormControl<number | undefined>(undefined, {
-        nonNullable: true,
-        validators: [
-          Validators.required,
-          Validators.min(1),
-          priceMaxiumValidator(1000),
-        ],
-      }),
-      category: new FormControl('', { nonNullable: true }),
-    });
-  }
-
   ngOnInit(): void {
-    this.productForm?.controls.category.valueChanges
+    this.productForm.controls.category.valueChanges
       .pipe(takeUntilDestroyed(this.destoryRef))
       .subscribe(() => {
-        this.productForm?.controls.price.reset();
+        this.productForm.controls.price.reset();
       });
   }
 }
